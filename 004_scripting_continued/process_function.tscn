@@ -1,0 +1,166 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Panel.gd" type="Script" id=1]
+[ext_resource path="res://Panel2.gd" type="Script" id=2]
+
+[node name="Node" type="Node"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 230.0
+margin_bottom = 120.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_right = 230.0
+margin_bottom = 15.0
+text = "Demonstrating _process()"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel"]
+margin_top = 15.0
+margin_right = 230.0
+margin_bottom = 30.0
+text = "which is dependent on framerate"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="delta" type="Label" parent="Panel"]
+margin_top = 45.0
+margin_right = 230.0
+margin_bottom = 60.0
+text = "delta: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sum(delta)" type="Label" parent="Panel"]
+margin_top = 60.0
+margin_right = 230.0
+margin_bottom = 75.0
+text = "sum(delta):"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="framerate" type="Label" parent="Panel"]
+margin_top = 90.0
+margin_right = 230.0
+margin_bottom = 105.0
+text = "framerate:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel2" type="Panel" parent="."]
+margin_left = 260.705
+margin_top = 2.24747
+margin_right = 490.705
+margin_bottom = 122.247
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel2"]
+margin_right = 230.0
+margin_bottom = 15.0
+text = "Demonstrating _physics_process()"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel2"]
+margin_top = 15.0
+margin_right = 230.0
+margin_bottom = 30.0
+text = "which is usually called 60/second"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="delta" type="Label" parent="Panel2"]
+margin_top = 45.0
+margin_right = 230.0
+margin_bottom = 60.0
+text = "delta: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sum(delta)" type="Label" parent="Panel2"]
+margin_top = 60.0
+margin_right = 230.0
+margin_bottom = 75.0
+text = "sum(delta):"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="framerate" type="Label" parent="Panel2"]
+margin_top = 90.0
+margin_right = 230.0
+margin_bottom = 105.0
+text = "framerate:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Panel2"]
+margin_top = 105.0
+margin_right = 230.0
+margin_bottom = 120.0
+text = "delta is constant"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 227.179
+margin_top = 154.794
+margin_right = 277.179
+margin_bottom = 174.794
+toggle_mode = true
+text = "Pause"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 115.817
+margin_top = 203.125
+margin_right = 155.817
+margin_bottom = 217.125
+text = "Resize or move the window to affect framerate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="Button" to="Panel2" method="_on_Button_toggled"]
+[connection signal="toggled" from="Button" to="Panel" method="_on_Button_toggled"]

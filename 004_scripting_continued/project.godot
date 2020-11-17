@@ -8,14 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "ScriptName",
+"language": "GDScript",
+"path": "res://register_scripts_as_classes.gd"
+} ]
 _global_script_class_icons={
-
+"ScriptName": "res://icon.png"
 }
 
 [application]
 
 config/name="scripting_continued"
+run/main_scene="res://process_function.tscn"
 config/icon="res://icon.png"
 
 [rendering]

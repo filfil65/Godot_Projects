@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Label-overridable_functions.gd" type="Script" id=1]
+
+[node name="Node" type="Node"]
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Overridable Functions - see script"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
