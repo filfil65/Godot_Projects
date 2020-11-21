@@ -6,12 +6,14 @@ var score: int
 
 func _ready():
 	randomize() # This will randominse the seed on your rand functions
-	new_game()
 
 
 func new_game():
-	score = 0
+	# Signal from HUD
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
 	$Player.start($PlayerStartPosition.position)
+	$Music.play()
 	$StartTimer.start()
 
 
@@ -19,6 +21,10 @@ func game_over():
 	# _on_Player_hit()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$Music.stop()
+	$DeathSound.play()
+	$HUD.show_game_over()
+	get_tree().call_group("mobs", "queue_free")
 
 
 func _on_MobTimer_timeout():
@@ -45,8 +51,10 @@ func _on_MobTimer_timeout():
 
 func _on_ScoreTimer_timeout():
 	score += 1
+	$HUD.update_score(score)
 
 
 func _on_StartTimer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
+
