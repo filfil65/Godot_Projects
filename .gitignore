@@ -5,3 +5,6 @@
 *.zip
 *.pck
 *.exe
+*.js
+*.html
+*.wasm
