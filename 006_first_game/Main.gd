@@ -58,3 +58,6 @@ func _on_StartTimer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
 
+
+func _on_HUD_close_game():
+	get_tree().quit()
