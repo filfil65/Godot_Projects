@@ -1,0 +1,74 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://002_assets/004_bad_fish/3.png" type="Texture" id=1]
+[ext_resource path="res://002_assets/004_bad_fish/12.png" type="Texture" id=2]
+[ext_resource path="res://002_assets/004_bad_fish/14.png" type="Texture" id=3]
+[ext_resource path="res://002_assets/004_bad_fish/5.png" type="Texture" id=4]
+[ext_resource path="res://002_assets/004_bad_fish/4.png" type="Texture" id=5]
+[ext_resource path="res://002_assets/004_bad_fish/18.png" type="Texture" id=6]
+[ext_resource path="res://002_assets/004_bad_fish/13.png" type="Texture" id=7]
+[ext_resource path="res://002_assets/004_bad_fish/19.png" type="Texture" id=8]
+[ext_resource path="res://002_assets/004_bad_fish/17.png" type="Texture" id=9]
+[ext_resource path="res://002_assets/004_bad_fish/7.png" type="Texture" id=10]
+[ext_resource path="res://002_assets/004_bad_fish/11.png" type="Texture" id=11]
+[ext_resource path="res://002_assets/004_bad_fish/15.png" type="Texture" id=12]
+[ext_resource path="res://002_assets/004_bad_fish/16.png" type="Texture" id=13]
+[ext_resource path="res://002_assets/004_bad_fish/8.png" type="Texture" id=14]
+[ext_resource path="res://002_assets/004_bad_fish/9.png" type="Texture" id=15]
+[ext_resource path="res://002_assets/004_bad_fish/6.png" type="Texture" id=16]
+[ext_resource path="res://002_assets/004_bad_fish/20.png" type="Texture" id=17]
+[ext_resource path="res://002_assets/004_bad_fish/10.png" type="Texture" id=18]
+[ext_resource path="res://002_assets/004_bad_fish/0.png" type="Texture" id=19]
+[ext_resource path="res://002_assets/004_bad_fish/1.png" type="Texture" id=20]
+[ext_resource path="res://002_assets/004_bad_fish/2.png" type="Texture" id=21]
+[ext_resource path="res://001_scenes/004_bad_fish/BadFish.gd" type="Script" id=22]
+[ext_resource path="res://001_scenes/004_bad_fish/SwimAnimatedSprite.gd" type="Script" id=23]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 17 ) ],
+"loop": false,
+"name": "swim",
+"speed": 30.0
+} ]
+
+[node name="BadFish" type="RigidBody2D" groups=[
+"mobs",
+]]
+collision_layer = 2147483648
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 176, 0 )
+scale = Vector2( 0.5, 0.5 )
+build_mode = 1
+polygon = PoolVector2Array( 84.4249, 116.338, 149.508, 120.307, 172.526, 84.5903, 124.904, 79.8281, 177.288, 42.5242, 220.941, 36.9683, 309.086, 71.4282, 333.086, -24.5718, 309.086, -48.5718, 239.197, -41.6081, 53.0857, -128.572, 7.43594, -117.803, -71.9341, -132.09, -154.914, -128.572, -221.943, -143.995, -304.488, -125.74, -250.914, -24.5718, -298.914, 39.4282, -326.712, 101.259, -284.646, 129.038, -170.914, 143.428, 13.0857, 143.428 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 0
+position = Vector2( 176, 0 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 2 )
+animation = "swim"
+frame = 14
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 336, 0 )
+[connection signal="viewport_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_viewport_exited"]

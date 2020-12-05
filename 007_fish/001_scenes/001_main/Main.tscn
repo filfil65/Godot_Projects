@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://001_scenes/002_ui/UI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://001_scenes/001_main/Main.gd" type="Script" id=2]
+[ext_resource path="res://002_assets/000_background/background.png" type="Texture" id=3]
+[ext_resource path="res://001_scenes/003_player/Player.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1024, 0, 0, 0, 0, 0, 1024, 600 )
+}
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="UI" parent="." instance=ExtResource( 1 )]
+
+[node name="PlayerStartPosition" type="Position2D" parent="."]
+position = Vector2( 512, 383.375 )
+
+[node name="LeftEdge" type="Path2D" parent="."]
+curve = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="LeftEdge"]
+position = Vector2( 0, 600 )
+rotation = -1.5708
+
+[node name="RightEdge" type="Path2D" parent="."]
+curve = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="RightEdge"]
+position = Vector2( 1024, 0 )
+rotation = 1.57083
+
+[node name="MobTimer" type="Timer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 512, 384 )
+scale = Vector2( 0.05, 0.05 )
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+position = Vector2( 211.625, 163.899 )
+collision_layer = 2147483650
+collision_mask = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Boundary"]
+polygon = PoolVector2Array( 812.375, -163.899, 876.375, -227.899, 876.375, 476.101, 812.375, 476.101, -275.625, 476.101, -275.625, -227.899, 876.375, -227.899, 812.375, -163.899, -211.625, -163.899, -210.825, 436.102, 812.375, 436.101 )
+[connection signal="start_game" from="UI" to="." method="_on_UI_start_game"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
+[connection signal="add_score" from="Player" to="." method="_on_Player_add_score"]
+[connection signal="display_skeletons" from="Player" to="UI" method="_on_Player_display_skeletons"]
+[connection signal="game_over" from="Player" to="." method="end_game"]
