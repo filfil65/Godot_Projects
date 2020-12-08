@@ -16,6 +16,7 @@ func _on_UI_start_game():
 
 
 func end_game():
+	game_score = 0
 	$MobTimer.stop()
 	get_tree().call_group("mobs", "queue_free")
 	$UI.show_ui()

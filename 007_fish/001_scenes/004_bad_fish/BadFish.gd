@@ -9,7 +9,7 @@ func _ready():
 	$AnimatedSprite.play()
 	score_points = scale_multiplier * 100
 	size = $AnimatedSprite.frames.get_frame("swim", 0).get_size() * scale_multiplier
-	size = size - Vector2(15, 15) # Adjustment because sizes are not quite correct.
+	size = size * 0.6  # Adjustment because sizes are not quite correct.
 	print("printing my scale: " + str(scale_multiplier))
 	print("printing my size: " + str(size))
 	print("printing my score: " + str(score_points))

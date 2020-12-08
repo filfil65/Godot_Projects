@@ -80,7 +80,7 @@ func _on_MouthArea_body_entered(body: Node):
 
 func _grow():
 	# Increase player size and display fish bones
-	scale += Vector2(0.0012, 0.0012)
+	scale += Vector2(0.012, 0.012)
 	player_size_scaled = $Sprite.texture.get_size() * scale
 	if fish_ate_counter % 10 == 0:
 		emit_signal("display_skeletons")
